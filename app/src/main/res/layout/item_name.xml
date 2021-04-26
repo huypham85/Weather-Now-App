@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:layout_marginTop="10dp"
+    android:padding="16dp"
+    android:background="@drawable/pad_item"
+    android:layout_marginLeft="28dp"
+    android:layout_marginRight="28dp"
+    android:elevation="10dp"
+    >
+    <TextView
+        android:id="@+id/txtCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="City"
+        android:textSize="50dp"
+        android:textColor="@color/white"
+        />
+    <TextView
+        android:id="@+id/txtTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/imgIcon"
+        android:textColor="@color/white"
+        android:text="temp"
+        android:textSize="40dp"
+        />
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="300dp"
+        android:src="@drawable/sunny" />
+
+</RelativeLayout>
