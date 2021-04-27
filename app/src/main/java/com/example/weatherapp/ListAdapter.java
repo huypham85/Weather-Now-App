@@ -39,10 +39,12 @@ public class ListAdapter extends BaseAdapter {
         view = inflater.inflate(R.layout.item_name,null);
         TextView txtCity = (TextView)view.findViewById(R.id.txtCity);
         TextView txtTemp = view.findViewById(R.id.txtTemp);
+        TextView txtCountry = view.findViewById(R.id.txtCountry);
         ImageView imgView = view.findViewById(R.id.imgIcon);
         imgView.setImageBitmap(items.get(position).getBitmap());
         txtCity.setText(items.get(position).getCity());
         txtTemp.setText(items.get(position).getTemp()+"°");
+        txtCountry.setText(items.get(position).getCountry());
         return view;
     }
 }

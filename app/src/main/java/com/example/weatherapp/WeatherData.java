@@ -5,20 +5,26 @@ import android.graphics.Bitmap;
 class WeatherData {
     private String city;
     private String temp;
+    private String maxTemp;
+    private String minTemp;
     private String time;
     private String vision;
     private String humid;
     private String feel_like;
     private Bitmap bitmap;
+    private String country;
 
-    public WeatherData(String city, String temp, String time, String vision, String humid, String feel_like,Bitmap bitmap) {
+    public WeatherData(String city, String temp, String maxTemp, String minTemp, String time, String vision, String humid, String feel_like, Bitmap bitmap,String country) {
         this.city = city;
         this.temp = temp;
+        this.maxTemp = maxTemp;
+        this.minTemp = minTemp;
         this.time = time;
         this.vision = vision;
         this.humid = humid;
         this.feel_like = feel_like;
         this.bitmap = bitmap;
+        this.country=country;
     }
 
     public WeatherData(String newCity, String newTemp) {
@@ -28,6 +34,14 @@ class WeatherData {
 
     public WeatherData() {
 
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getCity() {
@@ -44,6 +58,22 @@ class WeatherData {
 
     public void setTemp(String temp) {
         this.temp = temp;
+    }
+
+    public String getMaxTemp() {
+        return maxTemp;
+    }
+
+    public void setMaxTemp(String maxTemp) {
+        this.maxTemp = maxTemp;
+    }
+
+    public String getMinTemp() {
+        return minTemp;
+    }
+
+    public void setMinTemp(String minTemp) {
+        this.minTemp = minTemp;
     }
 
     public String getTime() {

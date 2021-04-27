@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             return bitmap;
         }
     }
-    TextView txtCity, txtTime, txtValueFeelLike, txtValueHumidity, txtVision, txtTemp;
+    TextView txtCity, txtTime, txtValueFeelLike, txtValueHumidity, txtVision, txtTemp,txtMinTemp,txtMaxTemp;
     String city, temp;
     ImageView imageView;
     SearchActivity searchActivity;
@@ -94,19 +94,25 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String newCity = (String) intent.getExtras().get("city");
         String newTemp = (String) intent.getExtras().get("temp");
+        String newMaxTemp = (String) intent.getExtras().get("maxTemp");
+        String newMinTemp = (String) intent.getExtras().get("minTemp");
         String newVision = (String) intent.getExtras().get("vision");
         String newHumid = (String) intent.getExtras().get("humid");
         String newTime = (String) intent.getExtras().get("time");
         String newFeelLike = (String) intent.getExtras().get("feel_like");
         Bitmap newBitmap = (Bitmap) intent.getExtras().get("image");
+        String newCountry = (String) intent.getExtras().get("country");
         Intent intent1 = new Intent(this, ListActivity.class);
         intent1.putExtra("city",newCity);
         intent1.putExtra("temp",newTemp);
+        intent1.putExtra("maxTemp",newMaxTemp);
+        intent1.putExtra("minTemp",newMinTemp);
         intent1.putExtra("time", newTime);
         intent1.putExtra("feel_like", newFeelLike);
         intent1.putExtra("humid", newHumid);
         intent1.putExtra("vision", newVision);
         intent1.putExtra("image", newBitmap);
+        intent1.putExtra("country", newCountry);
 //        setResult(Activity.RESULT_OK, intent);
         startActivity(intent1);
         finish();
@@ -119,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
         temp = bundle.getString("temp");
         txtCity.setText(bundle.getString("city"));
         txtTemp.setText(bundle.getString("temp")+"°");
+        txtMaxTemp.setText(bundle.getString("maxTemp")+"°");
+        txtMinTemp.setText(bundle.getString("minTemp")+"°");
         txtTime.setText(bundle.getString("time"));
         txtValueHumidity.setText(bundle.getString("humid")+"%");
         txtValueFeelLike.setText(bundle.getString("feel_like")+"°");
@@ -137,6 +145,8 @@ public class MainActivity extends AppCompatActivity {
         txtValueHumidity=findViewById(R.id.txtValueHumidity);
         txtVision=findViewById(R.id.txtValueView);
         txtTemp=findViewById(R.id.txtValue);
+        txtMaxTemp=findViewById(R.id.txtMaxTemp);
+        txtMinTemp=findViewById(R.id.txtMinTemp);
         imageView=findViewById(R.id.imgIcon);
         setData();
     }

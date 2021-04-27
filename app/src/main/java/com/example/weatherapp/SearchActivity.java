@@ -28,7 +28,7 @@ public class SearchActivity extends AppCompatActivity {
     EditText edt;
     String City;
     String Key="f4091b970e2542dc7791f8719512ecb1";
-    String txtTime, txtValueFeelLike, txtValueHumidity, txtVision, txtTemp;
+    String txtTime, txtValueFeelLike, txtValueHumidity, txtVision, txtTemp,maxTemp,minTemp,country;
     ImageView imageView;
     Bitmap bitmap;
     public void Search(View view){
@@ -42,11 +42,14 @@ public class SearchActivity extends AppCompatActivity {
             //Log.i("URL", url);
             JSONObject jsonObject = new JSONObject(result);
             txtTemp = jsonObject.getJSONObject("main").getString("temp");
+            maxTemp = jsonObject.getJSONObject("main").getString("temp_max");
+            minTemp=jsonObject.getJSONObject("main").getString("temp_min");
             txtValueHumidity = jsonObject.getJSONObject("main").getString("humidity");
             txtValueFeelLike = jsonObject.getJSONObject("main").getString("feels_like");
             txtVision= jsonObject.getString("visibility");
             Long time = jsonObject.getLong("dt");
             txtTime = new SimpleDateFormat("dd-M-yyyy hh:mm:ss", Locale.ENGLISH).format(new Date(time*1000));
+            country = jsonObject.getJSONObject("sys").getString("country");
             //imageView = findViewById(R.id.imgIcon);
             String nameIcon = "10d";
             nameIcon = jsonObject.getJSONArray("weather").getJSONObject(0).getString("icon");
@@ -70,6 +73,9 @@ public class SearchActivity extends AppCompatActivity {
                 .putExtra("time",txtTime)
                 .putExtra("vision",txtVision)
                 .putExtra("image",bitmap)
+                .putExtra("maxTemp",maxTemp)
+                .putExtra("minTemp",minTemp)
+                .putExtra("country",country);
                 ;
          SearchActivity.this.startActivityForResult(intent, ListActivity.REQUEST_FROM_MAIN);
          finish();

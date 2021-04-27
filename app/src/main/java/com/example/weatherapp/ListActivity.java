@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -22,7 +23,7 @@ public class ListActivity extends AppCompatActivity {
     private ListView listView;
     Button button;
     WeatherData weatherData = new WeatherData();
-    List<WeatherData> items=new ArrayList<WeatherData>();
+    static List<WeatherData> items=new ArrayList<WeatherData>();
     ListAdapter adapter = new ListAdapter(items, this);
     public void Send(View view) {
         Intent intent = new Intent(this, SearchActivity.class);
@@ -42,22 +43,21 @@ public class ListActivity extends AppCompatActivity {
         return false;
     }
 
-    void getData(){
-        Intent intent = this.getIntent();
-    }
-
     void onClick(){
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ListActivity.this,MainActivity.class);
                 intent.putExtra("temp", items.get(position).getTemp())
+                        .putExtra("maxTemp",items.get(position).getMaxTemp())
+                        .putExtra("minTemp",items.get(position).getMinTemp())
                         .putExtra("city",items.get(position).getCity())
                         .putExtra("feel_like",items.get(position).getFeel_like())
                         .putExtra("humid",items.get(position).getHumid())
                         .putExtra("time",items.get(position).getTime())
                         .putExtra("vision",items.get(position).getVision())
                         .putExtra("image", items.get(position).getBitmap())
+                        .putExtra("country",items.get(position).getCountry())
                         .putExtra("key",2);
                 startActivity(intent);
                 Toast.makeText(ListActivity.this,"you clicked", Toast.LENGTH_SHORT).show();
@@ -72,7 +72,6 @@ public class ListActivity extends AppCompatActivity {
         button = findViewById(R.id.addBtn);
         listView = findViewById(R.id.list_view);
         listView.setAdapter(adapter);
-
     }
 
     @Override
@@ -84,39 +83,43 @@ public class ListActivity extends AppCompatActivity {
             String newCity = (String) bundle.get("city");
             if(newCity!=null && checkSameCity(newCity)==false) {
                 String newTemp = (String) bundle.get("temp");
+                String newMaxTemp= (String) bundle.get("maxTemp");
+                String newMinTemp= (String) bundle.get("minTemp");
                 String newVision = (String) bundle.get("vision");
                 String newHumid = (String) bundle.get("humid");
                 String newTime = (String) bundle.get("time");
                 String newFeelLike = (String) bundle.get("feel_like");
                 Bitmap newBitmap = (Bitmap) bundle.get("image");
-                items.add(new WeatherData(newCity, newTemp, newTime, newVision, newHumid, newFeelLike,newBitmap));
+                String newCountry = (String) bundle.get("country");
+                items.add(new WeatherData(newCity, newTemp,newMaxTemp,newMinTemp, newTime, newVision, newHumid, newFeelLike,newBitmap,newCountry));
                 adapter.notifyDataSetChanged();
                 listView.setAdapter(adapter);
+                Log.e("Items 's size", items.size()+"");
                 onClick();
             }
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_FROM_MAIN){
-            if(resultCode == Activity.RESULT_OK) {
-                String newCity = (String) data.getExtras().get("city");
-                if(checkSameCity(newCity)==false) {
-                    String newTemp = (String) data.getExtras().get("temp");
-                    String newVision = (String) data.getExtras().get("vision");
-                    String newHumid = (String) data.getExtras().get("humid");
-                    String newTime = (String) data.getExtras().get("time");
-                    String newFeelLike = (String) data.getExtras().get("feel_like");
-                    Bitmap newBitmap = (Bitmap) data.getExtras().get("image");
-                    items.add(new WeatherData(newCity, newTemp, newTime, newVision, newHumid, newFeelLike,newBitmap));
-                    adapter.notifyDataSetChanged();
-                    listView.setAdapter(adapter);
-                    onClick();
-                }
-            }
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if(requestCode == REQUEST_FROM_MAIN){
+//            if(resultCode == Activity.RESULT_OK) {
+//                String newCity = (String) data.getExtras().get("city");
+//                if(checkSameCity(newCity)==false) {
+//                    String newTemp = (String) data.getExtras().get("temp");
+//                    String newVision = (String) data.getExtras().get("vision");
+//                    String newHumid = (String) data.getExtras().get("humid");
+//                    String newTime = (String) data.getExtras().get("time");
+//                    String newFeelLike = (String) data.getExtras().get("feel_like");
+//                    Bitmap newBitmap = (Bitmap) data.getExtras().get("image");
+//                    items.add(new WeatherData(newCity, newTemp, newTime, newVision, newHumid, newFeelLike,newBitmap));
+//                    adapter.notifyDataSetChanged();
+//                    listView.setAdapter(adapter);
+//                    onClick();
+//                }
+//            }
+//        }
+//    }
 
 }

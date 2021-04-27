@@ -39,7 +39,7 @@
                 android:layout_marginLeft="20dp"
                 android:text="Time"
                 android:textColor="#ffff"
-                android:textSize="30dp" />
+                android:textSize="15dp" />
 
             <ImageView
                 android:id="@+id/imgIcon"
@@ -53,13 +53,48 @@
                 android:id="@+id/txtValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="130dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginRight="45dp"
                 android:layout_alignParentRight="true"
                 android:fontFamily="sans-serif"
-                android:text="3°"
+                android:textStyle="bold"
+                android:text="21°"
                 android:textColor="#ffff"
-                android:textSize="60dp" />
+                android:textSize="50dp" />
+            <TextView
+                android:id="@+id/txtMaxTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtValue"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="220dp"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:text="14°"
+                />
+            <TextView
+                android:id="@+id/txtMinTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtValue"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="320dp"
+                android:textColor="@color/white"
+                android:textStyle="normal"
+                android:textSize="20dp"
+                android:text="10°"
+                android:alpha="0.7"
+                />
+            <TextView
+                android:id="@+id/today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtCity"
+                android:layout_marginLeft="255dp"
+                android:text="Today"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                />
         </RelativeLayout>
 
         <RelativeLayout
