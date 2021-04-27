@@ -32,7 +32,6 @@ public class SearchActivity extends AppCompatActivity {
     ImageView imageView;
     Bitmap bitmap;
     public void Search(View view){
-
         City = edt.getText().toString();
         String url = "https://api.openweathermap.org/data/2.5/weather?q=" + City +"&units=metric&appid="+Key;
         MainActivity.DownloadJSON downloadJSON = new MainActivity.DownloadJSON();
@@ -84,6 +83,7 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_search);
         btn= findViewById(R.id.btn);
         edt = findViewById(R.id.edt);

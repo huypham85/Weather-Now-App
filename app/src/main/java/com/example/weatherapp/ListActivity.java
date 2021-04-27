@@ -1,9 +1,11 @@
 package com.example.weatherapp;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -21,7 +23,7 @@ import java.util.List;
 public class ListActivity extends AppCompatActivity {
     public static final int REQUEST_FROM_MAIN =1;
     private ListView listView;
-    Button button;
+    ImageButton button;
     WeatherData weatherData = new WeatherData();
     static List<WeatherData> items=new ArrayList<WeatherData>();
     ListAdapter adapter = new ListAdapter(items, this);
@@ -65,13 +67,39 @@ public class ListActivity extends AppCompatActivity {
         });
     }
 
+    void onLongClick(){
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                final int which_item = position;
+                new AlertDialog.Builder(ListActivity.this)
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setTitle("")
+                        .setMessage("Do you want to delete this city")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                items.remove(which_item);
+                                adapter.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+                return true;
+            }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Home");
         setContentView(R.layout.activity_list);
         button = findViewById(R.id.addBtn);
         listView = findViewById(R.id.list_view);
         listView.setAdapter(adapter);
+        onClick();
+        onLongClick();
     }
 
     @Override
@@ -95,7 +123,6 @@ public class ListActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
                 listView.setAdapter(adapter);
                 Log.e("Items 's size", items.size()+"");
-                onClick();
             }
         }
     }
