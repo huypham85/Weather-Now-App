@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +24,7 @@ import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 public class SearchActivity extends AppCompatActivity {
-    Button btn;
+    ImageButton btn;
     EditText edt;
     String City;
     String Key="f4091b970e2542dc7791f8719512ecb1";
@@ -71,6 +72,7 @@ public class SearchActivity extends AppCompatActivity {
                 .putExtra("image",bitmap)
                 ;
          SearchActivity.this.startActivityForResult(intent, ListActivity.REQUEST_FROM_MAIN);
+         finish();
     }
 
     @Override
@@ -79,6 +81,7 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         btn= findViewById(R.id.btn);
         edt = findViewById(R.id.edt);
+        getSupportActionBar().setTitle("Search");
     }
 
     @Override

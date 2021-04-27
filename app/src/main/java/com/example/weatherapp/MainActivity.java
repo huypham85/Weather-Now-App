@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -87,50 +88,9 @@ public class MainActivity extends AppCompatActivity {
     TextView txtCity, txtTime, txtValueFeelLike, txtValueHumidity, txtVision, txtTemp;
     String city, temp;
     ImageView imageView;
-//    public void Search(View view){
-//        City = edt.getText().toString();
-//        String url = "https://api.openweathermap.org/data/2.5/weather?q=" + City +"&units=metric&appid="+Key;
-//        edt.setVisibility((View.INVISIBLE));
-//        btn.setVisibility(View.INVISIBLE);
-//        rlWeather.setVisibility(View.VISIBLE);
-//        DownloadJSON downloadJSON = new DownloadJSON();
-//        try{
-//            String result = downloadJSON.execute(url).get();
-//
-//            //Log.i("URL", url);
-//            JSONObject jsonObject = new JSONObject(result);
-//            String temp = jsonObject.getJSONObject("main").getString("temp");
-//            String humidity = jsonObject.getJSONObject("main").getString("humidity");
-//            String feel_Like = jsonObject.getJSONObject("main").getString("feels_like");
-//            String visibility = jsonObject.getString("visibility");
-//            Long time = jsonObject.getLong("dt");
-//            String sTime = new SimpleDateFormat("dd-M-yyyy hh:mm:ss", Locale.ENGLISH).format(new Date(time*1000));
-//            txtTime.setText(sTime);
-//            txtCity.setText(City);
-//            txtVision.setText(visibility+" m");
-//            txtValueFeelLike.setText(feel_Like+"°");
-//            txtValueHumidity.setText(humidity+"%");
-//            txtTemp.setText(temp+"°");
-//            imageView = findViewById(R.id.imgIcon);
-//            String nameIcon = "10d";
-//            nameIcon = jsonObject.getJSONArray("weather").getJSONObject(0).getString("icon");
-//            String urlIcon = "https://openweathermap.org/img/wn/" +nameIcon+ "@2x.png";
-//            DownloadIcon downloadIcon = new DownloadIcon();
-//            Bitmap bitmap = downloadIcon.execute(urlIcon).get();
-//            imageView.setImageBitmap(bitmap);
-//            Log.i("JSON", result);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     SearchActivity searchActivity;
     public void Back(View view){
-        Button backBtn = findViewById(R.id.backBtn);
+        ImageButton backBtn = findViewById(R.id.backBtn);
         Intent intent = getIntent();
         String newCity = (String) intent.getExtras().get("city");
         String newTemp = (String) intent.getExtras().get("temp");
@@ -139,14 +99,16 @@ public class MainActivity extends AppCompatActivity {
         String newTime = (String) intent.getExtras().get("time");
         String newFeelLike = (String) intent.getExtras().get("feel_like");
         Bitmap newBitmap = (Bitmap) intent.getExtras().get("image");
-        intent.putExtra("city",newCity);
-        intent.putExtra("temp",newTemp);
-        intent.putExtra("time", newTime);
-        intent.putExtra("feel_like", newFeelLike);
-        intent.putExtra("humid", newHumid);
-        intent.putExtra("vision", newVision);
-        intent.putExtra("image", newBitmap);
-        setResult(Activity.RESULT_OK, intent);
+        Intent intent1 = new Intent(this, ListActivity.class);
+        intent1.putExtra("city",newCity);
+        intent1.putExtra("temp",newTemp);
+        intent1.putExtra("time", newTime);
+        intent1.putExtra("feel_like", newFeelLike);
+        intent1.putExtra("humid", newHumid);
+        intent1.putExtra("vision", newVision);
+        intent1.putExtra("image", newBitmap);
+//        setResult(Activity.RESULT_OK, intent);
+        startActivity(intent1);
         finish();
     }
 

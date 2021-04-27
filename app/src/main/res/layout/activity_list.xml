@@ -5,20 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ListActivity"
-    android:background="#66DFFB"
+    android:background="#FFFFFF"
     >
     <Button
         android:id="@+id/addBtn"
         android:background="@drawable/ic_baseline_add_circle_outline_24"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="340dp"
         android:layout_alignParentBottom="true"
         android:onClick="Send"
         />
+
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:backgroundTint="#FF5757" />
 </RelativeLayout>

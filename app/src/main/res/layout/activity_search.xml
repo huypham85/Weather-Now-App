@@ -4,26 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4FE6FA"
+    android:backgroundTint="#FFFFFF"
     tools:context=".SearchActivity">
-    <EditText
-        android:id="@+id/edt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Search your city"
-        android:textStyle="italic"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="80dp"
-        android:singleLine="true"
-        />
-    <Button
-        android:id="@+id/btn"
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edt"
         android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
-        android:text="Search"
-        android:fontFamily="sans-serif"
-        android:onClick="Search"
-        />
+        android:background="@drawable/bg_search"
+        android:elevation="20dp">
+
+        <EditText
+            android:id="@+id/edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:fontFamily="sans-serif"
+            android:hint="Search your city"
+            android:singleLine="true"
+            android:textStyle="italic" />
+
+        <ImageButton
+            android:id="@+id/btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignRight="@+id/edt"
+            android:background="@drawable/ic_baseline_search_24"
+            android:backgroundTint="#35C9DC"
+            android:fontFamily="sans-serif"
+            android:onClick="Search"
+            app:iconTint="#03AFC5" />
+    </RelativeLayout>
+
 </RelativeLayout>

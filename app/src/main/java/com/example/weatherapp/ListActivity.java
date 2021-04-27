@@ -9,6 +9,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ import java.util.List;
 public class ListActivity extends AppCompatActivity {
     public static final int REQUEST_FROM_MAIN =1;
     private ListView listView;
+    Button button;
     WeatherData weatherData = new WeatherData();
     List<WeatherData> items=new ArrayList<WeatherData>();
     ListAdapter adapter = new ListAdapter(items, this);
@@ -66,8 +69,32 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+        button = findViewById(R.id.addBtn);
         listView = findViewById(R.id.list_view);
         listView.setAdapter(adapter);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent data = getIntent();
+        Bundle bundle = data.getExtras();
+        if(bundle!=null){
+            String newCity = (String) bundle.get("city");
+            if(newCity!=null && checkSameCity(newCity)==false) {
+                String newTemp = (String) bundle.get("temp");
+                String newVision = (String) bundle.get("vision");
+                String newHumid = (String) bundle.get("humid");
+                String newTime = (String) bundle.get("time");
+                String newFeelLike = (String) bundle.get("feel_like");
+                Bitmap newBitmap = (Bitmap) bundle.get("image");
+                items.add(new WeatherData(newCity, newTemp, newTime, newVision, newHumid, newFeelLike,newBitmap));
+                adapter.notifyDataSetChanged();
+                listView.setAdapter(adapter);
+                onClick();
+            }
+        }
     }
 
     @Override

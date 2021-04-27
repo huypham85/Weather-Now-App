@@ -8,13 +8,17 @@
     <RelativeLayout
         android:id="@+id/rlWeather"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         >
         <RelativeLayout
             android:id="@+id/rlMain"
             android:layout_width="match_parent"
             android:layout_height="240dp"
-            android:background="#03A9F4">
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg_weather">
 
             <TextView
                 android:id="@+id/txtCity"
@@ -22,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="sans-serif"
+                android:textStyle="bold"
                 android:text="City"
                 android:textColor="#ffff"
                 android:textSize="40dp" />
@@ -62,100 +67,120 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_below="@id/rlMain"
+            android:layout_marginTop="25dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg1"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
             >
+
             <ImageView
                 android:id="@+id/imgFeel"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/feel_like"
-                />
+                android:src="@drawable/feel_like" />
+
             <TextView
                 android:id="@+id/txtTitleFeel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Feels Like"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="90dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif"
-                />
+                android:text="Feels Like" />
+
             <TextView
                 android:id="@+id/txtValueFeel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1°"
                 android:layout_below="@+id/txtTitleFeel"
                 android:layout_marginLeft="90dp"
-                android:textSize="30dp"
                 android:fontFamily="sans-serif"
-                />
+                android:text="1°"
+                android:textSize="30dp" />
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/rlHumidity"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_below="@id/rlFeel"
-            >
+            android:layout_marginTop="25dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg1"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp">
+
             <ImageView
                 android:id="@+id/imgHumidity"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/humidity"
-                />
+                android:src="@drawable/humidity" />
+
             <TextView
                 android:id="@+id/txtTitleHumidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Humidity"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="90dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif"
-                />
+                android:text="Humidity" />
+
             <TextView
                 android:id="@+id/txtValueHumidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="50%"
                 android:layout_below="@+id/txtTitleHumidity"
                 android:layout_marginLeft="90dp"
-                android:textSize="30dp"
                 android:fontFamily="sans-serif"
-                />
+                android:text="50%"
+                android:textSize="30dp" />
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/rlView"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_below="@id/rlHumidity"
-            >
+            android:layout_marginTop="25dp"
+            android:elevation="10dp"
+            android:background="@drawable/bg1"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp">
+
             <ImageView
                 android:id="@+id/imgView"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/view"
-                />
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/eye" />
+
             <TextView
                 android:id="@+id/txtTitleView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Visibility"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="90dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif"
-                />
+                android:text="Visibility" />
+
             <TextView
                 android:id="@+id/txtValueView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10000 m"
                 android:layout_below="@+id/txtTitleView"
                 android:layout_marginLeft="90dp"
-                android:textSize="30dp"
                 android:fontFamily="sans-serif"
-                />
+                android:text="10000 m"
+                android:textSize="30dp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </RelativeLayout>
     </RelativeLayout>
 
-    <Button
+    <ImageButton
         android:id="@+id/backBtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -163,6 +188,7 @@
         android:layout_marginStart="372dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp"
+
         android:tooltipText="Save city and back to list"
         android:background="@drawable/ic_baseline_list_24"
         android:onClick="Back" />
