@@ -62,7 +62,7 @@ public class ListActivity extends AppCompatActivity {
                         .putExtra("country",items.get(position).getCountry())
                         .putExtra("key",2);
                 startActivity(intent);
-                Toast.makeText(ListActivity.this,"you clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListActivity.this,items.get(position).getCity(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -93,7 +93,7 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Home");
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_list);
         button = findViewById(R.id.addBtn);
         listView = findViewById(R.id.list_view);

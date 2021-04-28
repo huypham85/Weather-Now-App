@@ -25,6 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif"
                 android:textStyle="bold"
                 android:text="City"
@@ -36,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtCity"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="20dp"
                 android:text="Time"
                 android:textColor="#ffff"
@@ -43,17 +45,17 @@
 
             <ImageView
                 android:id="@+id/imgIcon"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_below="@id/txtTime"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:src="@drawable/sunny" />
 
             <TextView
                 android:id="@+id/txtValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_below="@+id/today"
                 android:layout_marginRight="45dp"
                 android:layout_alignParentRight="true"
                 android:fontFamily="sans-serif"
