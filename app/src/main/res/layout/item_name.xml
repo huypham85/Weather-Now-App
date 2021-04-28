@@ -5,55 +5,58 @@
     android:layout_height="170dp"
 
     >
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:padding="16dp"
-        android:paddingLeft="20dp"
-        android:background="@drawable/pad_item"
+        android:layout_marginVertical="10dp"
         android:layout_marginLeft="28dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="28dp"
-        android:layout_marginVertical="10dp">
+        android:background="@drawable/pad_item"
+        android:padding="16dp"
+        android:paddingLeft="20dp">
+
         <TextView
             android:id="@+id/txtCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="City"
-            android:textSize="40dp"
-            android:textColor="@color/white"
             android:fontFamily="sans-serif"
-            />
+            android:text="City"
+            android:textColor="@color/white"
+            android:textSize="40dp" />
+
         <TextView
             android:id="@+id/txtCountry"
-            android:layout_below="@+id/txtCity"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="2dp"
-            android:text="Country"
-            android:textSize="20dp"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/txtCity"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif"
+            android:text="Country"
+            android:textColor="@color/white"
+            android:textSize="20dp"
 
             />
+
         <TextView
             android:id="@+id/txtTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_below="@+id/imgIcon"
-            android:textColor="@color/white"
+            android:layout_alignParentEnd="true"
             android:fontFamily="sans-serif"
             android:text="temp"
-            android:textSize="40dp"
-            />
+            android:textColor="@color/white"
+            android:textSize="40dp" />
+
         <ImageView
             android:id="@+id/imgIcon"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginLeft="240dp"
             android:layout_marginTop="0dp"
-            android:layout_marginLeft="300dp"
             android:src="@drawable/sunny" />
     </RelativeLayout>
 </RelativeLayout>

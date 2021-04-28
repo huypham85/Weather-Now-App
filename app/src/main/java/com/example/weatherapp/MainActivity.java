@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             return bitmap;
         }
     }
-    TextView txtCity, txtTime, txtValueFeelLike, txtValueHumidity, txtVision, txtTemp,txtMinTemp,txtMaxTemp;
+    TextView txtCity, txtTime, txtValueFeelLike, txtValueHumidity, txtVision, txtTemp,txtMinTemp,txtMaxTemp,txtDescription;
     String city, temp;
     ImageView imageView;
     SearchActivity searchActivity;
@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         String newFeelLike = (String) intent.getExtras().get("feel_like");
         Bitmap newBitmap = (Bitmap) intent.getExtras().get("image");
         String newCountry = (String) intent.getExtras().get("country");
+        String newDescription = (String) intent.getExtras().get("description");
         Intent intent1 = new Intent(this, ListActivity.class);
         intent1.putExtra("city",newCity);
         intent1.putExtra("temp",newTemp);
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         intent1.putExtra("vision", newVision);
         intent1.putExtra("image", newBitmap);
         intent1.putExtra("country", newCountry);
-//        setResult(Activity.RESULT_OK, intent);
+        intent1.putExtra("description",newDescription);
         startActivity(intent1);
         finish();
     }
@@ -131,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         txtValueHumidity.setText(bundle.getString("humid")+"%");
         txtValueFeelLike.setText(bundle.getString("feel_like")+"°");
         txtVision.setText(bundle.getString("vision")+"m");
+        txtDescription.setText(bundle.getString("description"));
         imageView.setImageBitmap((Bitmap) intent.getExtras().get("image"));
     }
 
@@ -148,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         txtMaxTemp=findViewById(R.id.txtMaxTemp);
         txtMinTemp=findViewById(R.id.txtMinTemp);
         imageView=findViewById(R.id.imgIcon);
+        txtDescription=findViewById(R.id.txtDescription);
         setData();
     }
 }

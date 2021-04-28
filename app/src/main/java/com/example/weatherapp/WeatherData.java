@@ -13,8 +13,9 @@ class WeatherData {
     private String feel_like;
     private Bitmap bitmap;
     private String country;
+    private String description;
 
-    public WeatherData(String city, String temp, String maxTemp, String minTemp, String time, String vision, String humid, String feel_like, Bitmap bitmap,String country) {
+    public WeatherData(String city, String temp, String maxTemp, String minTemp, String time, String vision, String humid, String feel_like, Bitmap bitmap,String country,String description) {
         this.city = city;
         this.temp = temp;
         this.maxTemp = maxTemp;
@@ -25,6 +26,7 @@ class WeatherData {
         this.feel_like = feel_like;
         this.bitmap = bitmap;
         this.country=country;
+        this.description=description;
     }
 
     public WeatherData(String newCity, String newTemp) {
@@ -34,6 +36,14 @@ class WeatherData {
 
     public WeatherData() {
 
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getCountry() {

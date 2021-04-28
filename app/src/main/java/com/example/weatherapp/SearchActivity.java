@@ -28,56 +28,64 @@ public class SearchActivity extends AppCompatActivity {
     EditText edt;
     String City;
     String Key="f4091b970e2542dc7791f8719512ecb1";
-    String txtTime, txtValueFeelLike, txtValueHumidity, txtVision, txtTemp,maxTemp,minTemp,country;
+    String txtTime, txtValueFeelLike, txtValueHumidity, txtVision, txtTemp,maxTemp,minTemp,country,description;
     ImageView imageView;
     Bitmap bitmap;
     public void Search(View view){
         City = edt.getText().toString();
-        String url = "https://api.openweathermap.org/data/2.5/weather?q=" + City +"&units=metric&appid="+Key;
-        MainActivity.DownloadJSON downloadJSON = new MainActivity.DownloadJSON();
-        try{
-            String result = downloadJSON.execute(url).get();
+        if(City!="") {
+            String url = "https://api.openweathermap.org/data/2.5/weather?q=" + City + "&units=metric&appid=" + Key;
+            MainActivity.DownloadJSON downloadJSON = new MainActivity.DownloadJSON();
+            try {
+                String result = downloadJSON.execute(url).get();
 
-            //Log.i("URL", url);
-            JSONObject jsonObject = new JSONObject(result);
-            txtTemp = jsonObject.getJSONObject("main").getString("temp");
-            maxTemp = jsonObject.getJSONObject("main").getString("temp_max");
-            minTemp=jsonObject.getJSONObject("main").getString("temp_min");
-            txtValueHumidity = jsonObject.getJSONObject("main").getString("humidity");
-            txtValueFeelLike = jsonObject.getJSONObject("main").getString("feels_like");
-            txtVision= jsonObject.getString("visibility");
-            Long time = jsonObject.getLong("dt");
-            txtTime = new SimpleDateFormat("dd-M-yyyy hh:mm:ss", Locale.ENGLISH).format(new Date(time*1000));
-            country = jsonObject.getJSONObject("sys").getString("country");
-            //imageView = findViewById(R.id.imgIcon);
-            String nameIcon = "10d";
-            nameIcon = jsonObject.getJSONArray("weather").getJSONObject(0).getString("icon");
-            String urlIcon = "https://openweathermap.org/img/wn/" +nameIcon+ "@2x.png";
-            MainActivity.DownloadIcon downloadIcon = new MainActivity.DownloadIcon();
-            bitmap = downloadIcon.execute(urlIcon).get();
-            //imageView.setImageBitmap(bitmap);
-            Log.i("JSON", result);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
+                //Log.i("URL", url);
+                JSONObject jsonObject = new JSONObject(result);
+                txtTemp = jsonObject.getJSONObject("main").getString("temp");
+                txtTemp = String.valueOf((int)(Double.parseDouble(txtTemp)));
+                maxTemp = jsonObject.getJSONObject("main").getString("temp_max");
+                maxTemp = String.valueOf((int)(Double.parseDouble(maxTemp)));
+                minTemp = jsonObject.getJSONObject("main").getString("temp_min");
+                minTemp = String.valueOf((int)(Double.parseDouble(minTemp)));
+                txtValueHumidity = jsonObject.getJSONObject("main").getString("humidity");
+                txtValueFeelLike = jsonObject.getJSONObject("main").getString("feels_like");
+                txtValueFeelLike = String.valueOf((int)(Double.parseDouble(txtValueFeelLike)));
+                txtVision = jsonObject.getString("visibility");
+                Long time = jsonObject.getLong("dt");
+                txtTime = new SimpleDateFormat("dd-M-yyyy hh:mm:ss", Locale.ENGLISH).format(new Date(time * 1000));
+                country = jsonObject.getJSONObject("sys").getString("country");
+                description=jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
+                //imageView = findViewById(R.id.imgIcon);
+                String nameIcon = "10d";
+                nameIcon = jsonObject.getJSONArray("weather").getJSONObject(0).getString("icon");
+                String urlIcon = "https://openweathermap.org/img/wn/" + nameIcon + "@2x.png";
+                MainActivity.DownloadIcon downloadIcon = new MainActivity.DownloadIcon();
+                bitmap = downloadIcon.execute(urlIcon).get();
+                //imageView.setImageBitmap(bitmap);
+                //Log.i("JSON", result);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("temp", txtTemp)
+                    .putExtra("city", City)
+                    .putExtra("feel_like", txtValueFeelLike)
+                    .putExtra("humid", txtValueHumidity)
+                    .putExtra("time", txtTime)
+                    .putExtra("vision", txtVision)
+                    .putExtra("image", bitmap)
+                    .putExtra("maxTemp", maxTemp)
+                    .putExtra("minTemp", minTemp)
+                    .putExtra("country", country)
+                    .putExtra("description",description);
+            ;
+            SearchActivity.this.startActivityForResult(intent, ListActivity.REQUEST_FROM_MAIN);
+            finish();
         }
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("temp", txtTemp)
-                .putExtra("city",City)
-                .putExtra("feel_like",txtValueFeelLike)
-                .putExtra("humid",txtValueHumidity)
-                .putExtra("time",txtTime)
-                .putExtra("vision",txtVision)
-                .putExtra("image",bitmap)
-                .putExtra("maxTemp",maxTemp)
-                .putExtra("minTemp",minTemp)
-                .putExtra("country",country);
-                ;
-         SearchActivity.this.startActivityForResult(intent, ListActivity.REQUEST_FROM_MAIN);
-         finish();
     }
 
     @Override
